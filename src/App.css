@@ -175,47 +175,303 @@ body {
 
 .floating-elements {
   position: relative;
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
 }
 
-.element {
+.celestial-body {
   position: absolute;
   border-radius: 50%;
-  animation: float 6s ease-in-out infinite;
+  animation: celestialFloat 8s ease-in-out infinite;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.element-1 {
-  width: 100px;
-  height: 100px;
-  background: linear-gradient(135deg, #1E40AF, #3B82F6);
-  top: 0;
-  left: 0;
+/* Sun */
+.sun {
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle at 30% 30%, #FFD700, #FFA500, #FF6347);
+  top: 10px;
+  left: 20px;
   animation-delay: 0s;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
 }
 
-.element-2 {
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, #7C3AED, #A855F7);
-  top: 50px;
-  right: 0;
+.celestial-glow {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+/* Earth */
+.earth {
+  width: 90px;
+  height: 90px;
+  background: radial-gradient(circle at 40% 40%, #4A90E2, #2E7D32, #1565C0);
+  top: 120px;
+  right: 30px;
   animation-delay: 2s;
+  box-shadow: 0 0 20px rgba(74, 144, 226, 0.4);
 }
 
-.element-3 {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, #059669, #10B981);
-  bottom: 0;
+.earth-continents {
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse 20px 15px at 25% 30%, #2E7D32 40%, transparent 41%),
+    radial-gradient(ellipse 15px 10px at 70% 60%, #2E7D32 40%, transparent 41%),
+    radial-gradient(ellipse 12px 8px at 50% 80%, #2E7D32 40%, transparent 41%);
+}
+
+/* Moon orbiting Earth */
+.lunar-orbit {
+  position: absolute;
+  width: 220px; /* 30% larger */
+  height: 220px;
+  top: -46px;
+  left: -46px;
+  pointer-events: none;
+  animation: orbit 26s linear infinite;
+}
+.moon-small {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  top: -6px; /* place at top of orbit */
   left: 50%;
   transform: translateX(-50%);
-  animation-delay: 4s;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 30%, #F5F5DC, #D3D3D3, #A9A9A9);
+  box-shadow: 0 0 8px rgba(245, 245, 220, 0.5);
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(180deg); }
+/* Mars */
+.mars {
+  width: 75px;
+  height: 75px;
+  background: radial-gradient(circle at 35% 35%, #CD5C5C, #A0522D, #8B4513);
+  bottom: 80px;
+  left: 40px;
+  animation-delay: 4s;
+  box-shadow: 0 0 15px rgba(205, 92, 92, 0.4);
+}
+
+.mars-features {
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse 8px 6px at 30% 40%, #8B4513 40%, transparent 41%),
+    radial-gradient(ellipse 6px 4px at 70% 30%, #8B4513 40%, transparent 41%),
+    radial-gradient(ellipse 10px 5px at 20% 70%, #8B4513 40%, transparent 41%);
+}
+
+/* Moon */
+.moon {
+  width: 55px;
+  height: 55px;
+  background: radial-gradient(circle at 40% 30%, #F5F5DC, #D3D3D3, #A9A9A9);
+  bottom: 20px;
+  right: 60px;
+  animation-delay: 6s;
+  box-shadow: 0 0 10px rgba(245, 245, 220, 0.3);
+}
+
+.moon-craters {
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle 4px at 25% 35%, #A9A9A9 40%, transparent 41%),
+    radial-gradient(circle 3px at 65% 50%, #A9A9A9 40%, transparent 41%),
+    radial-gradient(circle 2px at 45% 75%, #A9A9A9 40%, transparent 41%),
+    radial-gradient(circle 3px at 75% 25%, #A9A9A9 40%, transparent 41%);
+}
+
+/* Animations */
+@keyframes celestialFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-25px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 0.7; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.05); 
+  }
+}
+
+/* Hover Effects */
+.celestial-body:hover {
+  transform: scale(1.1) !important;
+  z-index: 10;
+}
+
+.sun:hover {
+  box-shadow: 0 0 50px rgba(255, 215, 0, 0.8);
+  animation-play-state: paused;
+}
+
+.earth:hover {
+  box-shadow: 0 0 30px rgba(74, 144, 226, 0.6);
+  animation-play-state: paused;
+}
+
+.mars:hover {
+  box-shadow: 0 0 25px rgba(205, 92, 92, 0.6);
+  animation-play-state: paused;
+}
+
+.moon:hover {
+  box-shadow: 0 0 20px rgba(245, 245, 220, 0.5);
+  animation-play-state: paused;
+}
+
+/* Satellite Orbits and Animations */
+.satellite-orbit {
+  position: absolute;
+  border: none; /* hide orbit rings */
+  border-radius: 50%;
+  pointer-events: none;
+  transform-origin: 50% 50%;
+}
+
+.satellite {
+  position: absolute;
+  width: 10px;
+  height: 8px;
+  background: #d9d9d9;
+  border-radius: 2px; /* squarish */
+  box-shadow:
+    0 0 3px rgba(255, 255, 255, 0.6),
+    0 0 6px rgba(255, 255, 255, 0.3);
+  border: 0;
+  z-index: 100;
+  animation: satellitePulse 2s ease-in-out infinite;
+}
+
+/* solar panels */
+.satellite::before,
+.satellite::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 1.5px;
+  background: #ffffff;
+  opacity: 0.9;
+  transform: translateY(-50%);
+}
+.satellite::before { left: -9px; }
+.satellite::after { right: -9px; }
+
+/* Earth Satellites */
+.earth-orbit {
+  width: 120px;
+  height: 120px;
+  top: -15px;
+  left: -15px;
+  animation: orbit 12s linear infinite;
+}
+
+.earth-orbit-2 {
+  width: 140px;
+  height: 140px;
+  top: -25px;
+  left: -25px;
+  animation: orbit 18s linear infinite; /* clockwise */
+}
+
+.satellite-1 {
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.satellite-2 {
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Mars Satellites */
+.mars-orbit {
+  width: 100px;
+  height: 100px;
+  top: -12.5px;
+  left: -12.5px;
+  animation: orbit 15s linear infinite;
+}
+
+.mars-orbit-2 {
+  width: 120px;
+  height: 120px;
+  top: -22.5px;
+  left: -22.5px;
+  animation: orbit 22s linear infinite; /* clockwise */
+}
+
+.satellite-3 {
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.satellite-4 {
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Moon Satellites - removed, since moon now orbits Earth */
+.moon-orbit { display: none; }
+.satellite-5 { display: none; }
+
+/* Orbital Animation */
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes satellitePulse {
+  0%, 100% {
+    opacity: 0.9;
+    transform: translateX(-50%) scale(1);
+    box-shadow:
+      0 0 4px rgba(255, 255, 255, 0.8),
+      0 0 8px rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.15);
+    box-shadow:
+      0 0 6px rgba(255, 255, 255, 0.9),
+      0 0 12px rgba(255, 255, 255, 0.6);
+  }
+}
+
+/* Enhanced hover effects for planets with satellites */
+.celestial-body:hover .satellite-orbit {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.celestial-body:hover .satellite {
+  box-shadow:
+    0 0 8px rgba(255, 255, 255, 0.9),
+    0 0 14px rgba(255, 255, 255, 0.6);
+  transform: translateX(-50%) scale(1.4);
 }
 
 /* Section Styles */
@@ -429,9 +685,27 @@ body {
   }
   
   .floating-elements {
-    width: 200px;
-    height: 200px;
+    width: 240px;
+    height: 240px;
   }
+  /* Smaller bodies + reposition to corners to avoid overlap */
+  .sun { width: 80px; height: 80px; top: 0; left: 0; }
+  .earth { width: 65px; height: 65px; top: 0; right: 0; }
+  .mars { width: 55px; height: 55px; bottom: 0; left: 0; }
+  .moon { width: 45px; height: 45px; bottom: 0; right: 0; }
+
+  /* Shrink satellites, orbits, and lunar orbit proportionally */
+  .satellite { width: 7px; height: 5px; }
+  .satellite::before, .satellite::after { width: 6px; }
+
+  .earth-orbit { width: 80px; height: 80px; top: -10px; left: -10px; }
+  .earth-orbit-2 { width: 100px; height: 100px; top: -20px; left: -20px; }
+  .mars-orbit { width: 70px; height: 70px; top: -8px; left: -8px; }
+  .mars-orbit-2 { width: 90px; height: 90px; top: -18px; left: -18px; }
+  .lunar-orbit { width: 160px; height: 160px; top: -28px; left: -28px; }
+  .moon-small { width: 22px; height: 22px; top: -6px; }
+
+  .satellite-1, .satellite-2, .satellite-3, .satellite-4 { top: -3px; }
   
   .section-title {
     font-size: 2rem;
@@ -445,4 +719,23 @@ body {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 2rem; }
+  .hero-visual { height: 260px; }
+  .floating-elements { width: 180px; height: 180px; }
+  .sun { width: 60px; height: 60px; }
+  .earth { width: 50px; height: 50px; }
+  .mars { width: 45px; height: 45px; }
+  .moon { width: 40px; height: 40px; }
+  .satellite { width: 5px; height: 4px; }
+  .satellite::before, .satellite::after { width: 5px; }
+  .earth-orbit { width: 60px; height: 60px; top: -8px; left: -8px; }
+  .earth-orbit-2 { width: 75px; height: 75px; top: -15px; left: -15px; }
+  .mars-orbit { width: 55px; height: 55px; top: -7px; left: -7px; }
+  .mars-orbit-2 { width: 70px; height: 70px; top: -14px; left: -14px; }
+  .satellite-1, .satellite-2, .satellite-3, .satellite-4 { top: -3px; }
+  .lunar-orbit { width: 115px; height: 115px; top: -20px; left: -20px; }
+  .moon-small { width: 18px; height: 18px; top: -5px; }
 }

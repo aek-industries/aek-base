@@ -67,9 +67,32 @@ function App() {
         </div>
         <div className="hero-visual">
           <div className="floating-elements">
-            <div className="element element-1"></div>
-            <div className="element element-2"></div>
-            <div className="element element-3"></div>
+            <div className="celestial-body sun" title="Sun - Our Solar System's Star">
+              <div className="celestial-glow"></div>
+            </div>
+            <div className="celestial-body earth" title="Earth - Our Home Planet">
+              <div className="earth-continents"></div>
+              <div className="satellite-orbit earth-orbit">
+                <div className="satellite satellite-1"></div>
+              </div>
+              <div className="satellite-orbit earth-orbit-2">
+                <div className="satellite satellite-2"></div>
+              </div>
+              {/* Moon orbiting Earth */}
+              <div className="lunar-orbit">
+                <div className="moon-small"></div>
+              </div>
+            </div>
+            <div className="celestial-body mars" title="Mars - The Red Planet">
+              <div className="mars-features"></div>
+              <div className="satellite-orbit mars-orbit">
+                <div className="satellite satellite-3"></div>
+              </div>
+              <div className="satellite-orbit mars-orbit-2">
+                <div className="satellite satellite-4"></div>
+              </div>
+            </div>
+            
           </div>
         </div>
       </section>
@@ -118,7 +141,7 @@ function App() {
                 </div>
                 <div className="contact-item">
                   <span className="contact-label">Phone:</span>
-                  <span>+1 (555) 123-4567</span>
+                  <span>+1 (240) 367-3568</span>
                 </div>
               </div>
             </div>
