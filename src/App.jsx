@@ -53,9 +53,11 @@ function App() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section id="home" className="hero">
-        <div className="hero-content">
+      <main className="content">
+        <div className="content-container">
+        {/* Hero Section */}
+        <section id="home" className="hero">
+          <div className="hero-content">
           <h1 className="hero-title">Software as a Service</h1>
           <h2 className="hero-subtitle">Accelerating Innovation Through Technology</h2>
           <p className="hero-description">
@@ -64,9 +66,9 @@ function App() {
           <button className="cta-button" onClick={() => scrollToSection('about')}>
             Explore Our Services
           </button>
-        </div>
-        <div className="hero-visual">
-          <div className="floating-elements">
+          </div>
+          <div className="hero-visual">
+            <div className="floating-elements">
             <div className="celestial-body sun" title="Sun - Our Solar System's Star">
               <div className="celestial-glow"></div>
             </div>
@@ -93,13 +95,13 @@ function App() {
               </div>
             </div>
             
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* About Us Section */}
-      <section id="about" className="about">
-        <div className="section-container">
+        {/* About Us Section */}
+        <section id="about" className="about">
+          <div className="section-container">
           <h2 className="section-title">About AEK Industries</h2>
           <div className="about-grid">
             <div className="about-card">
@@ -123,12 +125,12 @@ function App() {
               <p>Full-stack applications, cloud architecture, and scalable enterprise solutions.</p>
             </div>
           </div>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="contact">
-        <div className="section-container">
+        {/* Contact Section */}
+        <section id="contact" className="contact">
+          <div className="section-container">
           <h2 className="section-title">Contact Us</h2>
           <div className="contact-content">
             <div className="contact-info">
@@ -154,8 +156,10 @@ function App() {
               </form>
             </div>
           </div>
+          </div>
+        </section>
         </div>
-      </section>
+      </main>
 
       {/* Footer */}
       <footer className="footer">

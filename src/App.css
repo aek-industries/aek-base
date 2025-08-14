@@ -17,6 +17,17 @@ body {
   min-height: 100vh;
 }
 
+/* Centered single-column content wrapper */
+.content {
+  display: block;
+}
+
+.content-container {
+  width: min(1200px, 92vw);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
 /* Navigation */
 .navbar {
   position: fixed;
@@ -30,7 +41,7 @@ body {
 }
 
 .nav-container {
-  max-width: 1200px;
+  width: min(1200px, 92vw);
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -108,15 +119,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  gap: 3rem;
+  width: 100%;
   position: relative;
 }
 
 .hero-content {
-  flex: 1;
-  max-width: 600px;
+  flex: 1 1 520px;
+  max-width: 620px;
   padding-top: 80px;
 }
 
@@ -165,18 +175,20 @@ body {
 }
 
 .hero-visual {
-  flex: 1;
+  flex: 1 1 0;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   height: 500px;
+  max-width: 520px;
+  margin: 0 auto;
 }
 
 .floating-elements {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: clamp(260px, 35vw, 400px);
+  height: clamp(260px, 35vw, 400px);
 }
 
 .celestial-body {
@@ -476,7 +488,7 @@ body {
 
 /* Section Styles */
 .section-container {
-  max-width: 1200px;
+  width: min(1200px, 92vw);
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -495,7 +507,12 @@ body {
 /* About Section */
 .about {
   padding: 6rem 0;
+}
+
+.about .section-container {
   background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
+  border-radius: 12px;
+  padding: 4rem 2rem;
 }
 
 .about-grid {
@@ -656,6 +673,7 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .content-container { width: min(1000px, 94vw); padding: 0 1rem; }
   .nav-container {
     padding: 0 1rem;
   }
@@ -669,25 +687,15 @@ body {
     padding: 0.4rem 0.8rem;
   }
   
-  .hero {
-    flex-direction: column;
-    text-align: center;
-    padding: 0 1rem;
-  }
+  .hero { flex-direction: column; text-align: center; }
   
   .hero-title {
     font-size: 2.5rem;
   }
   
-  .hero-visual {
-    margin-top: 2rem;
-    height: 300px;
-  }
+  .hero-visual { margin-top: 2rem; height: 320px; max-width: 380px; }
   
-  .floating-elements {
-    width: 240px;
-    height: 240px;
-  }
+  .floating-elements { width: clamp(200px, 55vw, 280px); height: clamp(200px, 55vw, 280px); }
   /* Smaller bodies + reposition to corners to avoid overlap */
   .sun { width: 80px; height: 80px; top: 0; left: 0; }
   .earth { width: 65px; height: 65px; top: 0; right: 0; }
@@ -722,9 +730,10 @@ body {
 }
 
 @media (max-width: 480px) {
+  .content-container { width: 94vw; padding: 0 0.75rem; }
   .hero-title { font-size: 2rem; }
-  .hero-visual { height: 260px; }
-  .floating-elements { width: 180px; height: 180px; }
+  .hero-visual { height: 280px; max-width: 320px; }
+  .floating-elements { width: clamp(160px, 70vw, 240px); height: clamp(160px, 70vw, 240px); }
   .sun { width: 60px; height: 60px; }
   .earth { width: 50px; height: 50px; }
   .mars { width: 45px; height: 45px; }
@@ -738,4 +747,68 @@ body {
   .satellite-1, .satellite-2, .satellite-3, .satellite-4 { top: -3px; }
   .lunar-orbit { width: 115px; height: 115px; top: -20px; left: -20px; }
   .moon-small { width: 18px; height: 18px; top: -5px; }
+}
+
+
+/* === FORCE-CENTER PAGE CONTAINERS (override) === */
+:root {
+  --page-max: 1200px;
+  --page-pad: 24px;
+}
+
+/* Reset any margin/padding that could offset centering */
+* { box-sizing: border-box; }
+body { margin: 0; padding: 0; }
+
+/* Page-wide centered wrappers with precise centering */
+.nav-container,
+.content-container,
+.section-container {
+  max-width: var(--page-max) !important;
+  width: calc(100% - var(--page-pad) * 2) !important;
+  margin: 0 auto !important;
+  padding-left: var(--page-pad) !important;
+  padding-right: var(--page-pad) !important;
+  position: relative !important;
+}
+
+/* Keep hero columns balanced inside the centered container */
+.hero { gap: 3rem !important; }
+.hero-visual { 
+  max-width: 520px !important; 
+  margin: 0 auto !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+/* Constrain celestial bodies within the hero-visual container */
+.floating-elements {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Reposition celestial bodies to stay within bounds */
+.celestial-body:nth-child(1) { top: 10% !important; left: 15% !important; } /* Sun */
+.celestial-body:nth-child(2) { top: 45% !important; right: 20% !important; } /* Earth */
+.celestial-body:nth-child(3) { top: 75% !important; left: 25% !important; } /* Mars */
+
+/* About block background should be centered with the container */
+.about { padding: 6rem 0 !important; }
+.about .section-container {
+  background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%) !important;
+  border-radius: 12px !important;
+  padding: 4rem 2rem !important;
+}
+
+/* Debug: Force perfect centering with transform if needed */
+.nav-container,
+.content-container,
+.section-container { 
+  outline: 1px dashed #00e5ff; /* remove after verifying */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
